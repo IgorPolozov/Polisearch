@@ -170,32 +170,46 @@ SOURCE CODE
 //PoliSearcher.h
 
 #include<iostream>
+
 #include <iterator>
+
 #include<list>
+
 #include<map>
+
 #include<vector>
+
 #include<string>
+
 #include<algorithm>
+
 #include <functional>
+
 #define nullptr 0
 
-//using namespace std;
 namespace PoliSearchering{
+
 template<typename T, size_t chain_size>
+
 class PoliSearcher
+
 	{
+	
     public: typedef bool ( *Pred )(const T &rhs,  const T& lhs);
     
     private:
 
 /////////////////////////////////////////////////////////////
 //forward declaration for typedefs
+
 struct NodePointer;
 
-//the managing vector iterator 
+//the managing vector iterator
+
 typedef typename std::vector<NodePointer>::iterator IterNodePointer;
 
 //iterator of a list of elements T (Storage) - dereferece gives the r-value of T
+
 typedef typename std::list<T>::const_iterator Iter;
 
 class Listed;
@@ -205,7 +219,8 @@ typedef typename std::list<Iter>::const_iterator IterToIter ;
 typedef typename std::map<Pred, Listed >::iterator ListListedsIter;
 
 struct NodePointer //the managing vector element
-	{
+
+	{	
 		IterToIter node_it;
 			int len;
 operator T ()
@@ -214,6 +229,7 @@ operator T ()
 	}
 
 NodePointer & operator = (const NodePointer & rhs)
+
 		{
 			if(this != &rhs){
 				node_it=rhs.node_it;

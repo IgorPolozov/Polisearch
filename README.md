@@ -6,8 +6,12 @@ The goal is to obtain a class that combines the advantages of random array acces
 This line of thought is not new. The combination of the principles of low-density arrays with pointers and lists, combined with the idea of converting indexes in a logical array to indices in the primary array (hashing), generated an interesting type such as a hash table or a hash array. It successfully combines the economical memory usage inherent in the lists and the access speed inherent in the arrays. Disadvantages are associated with such things as
 - the problem of finding a hash function; // a separate, most powerful theme, which has no general theoretical basis
 - rehashing with excessive lengthening of lists of collisions;
+- the logarithmic search time on the size of the primary array, which can be much smaller than the total amount of data;
 - natural incompatibility with orderliness;
  The latter property leads to the fact that, despite a sufficiently high access speed by value, it is not possible to make fast sampling the ordered ranges of elements. But you can quickly work with unordered data.
+ 
+ The proposed solution does not require hashing, as such. It is resistant to the order of data arrival. Allows you to quickly and simultaneously maintain many ordered structures on the same data storage.
+ 
 The PoliSearcher class, which  has been written as the result, is a combination of three containers:
 STL: std :: vector and two std :: list
 wich parameters contain the data in the form of iterators (!), so as not to invent a bike on the pointers.  Please do not kick roughly  due to of my implementation, because I'm not really an exelent encoder, but more of an inventor. I like to think about the concept. And when it is implemented, the implementation itself interests me much less. It's not laziness. Simply, to each his own. However, I will gladly accept any comments on the implementation.

@@ -36,10 +36,11 @@ In the event that all the chains are filled and there are no places to insert th
 This is convenient, since the structure is ready to removing and addition equally, and you can only force it to reallocate memory by adding  or removing  as much as it already contains.
 While deleting, everything happens similar, but the limit when the vector size is reduced by half, occurs when all the chainses lengthes are equal to one, that is, the size of the vector and its list are the same. This provides stability  against to reallocation. If you sequentaly add - remove a handful of identical or following strictly sequential elements into the binary search tree, you can easily achieve a mode in which the tree will be constantly make balance, which will lead to a sharp decrease in speed. It does not matter whether ALW or R&B tree is meant. Only the size of the elements group and technical details will differ.
 For a more complete understanding of the principle of the Polisearch class, let us take a look at how the storage is being filled from scratch.
+
+Reading next text, look the Pic files attached there, please.
+
 In the pictures Pic. 1, Pic. 2, Pic. 3, is shown the filling of Polisearcher containers with the sequence of integers: 9,3,6,1,12,5,2,4,7,10,8,11,15,13,14,16
 If all containers are initially empty then adding the one element will result in the appearance of this element in each of the containers. The vector will note that its only chain has one element (L = 1). And this an element is a leader for that a chain, of course. Its iterator in a single NodePointer of the vector is a copy of a single element of the search list that represents an iterator on a single element of int 9 in the storage list. Later, the addition of three more elements 3.6 and 1 leads to the fact that in the storage in the order of receipt are the elements 9,3,6,1. In the search list, they are ordered 1,3,6,9 and the only element of the vector NodPointer structure contains an iterator on 1 in the search list and the length of the chain expressed as len is equal 4. Adding element 12 leads to a doubling of the elements of the vector.
-
-////////////////////////////////////////////////////////
 
 To understand how the vector grows, you need to understand what is the field "norma" of the PoliSearcher class.
 Norma is a positive integer indicating the number of times (from division to the whole) the starting size of the normalized chain ch_sz = chain_size / norma is less than the maximum size chain_size.
@@ -59,7 +60,7 @@ template<typename T, size_t chain_size> class PoliSearcher {
 PoliSearcher
 	(
 		list<T> & storage_, 
-		const string &pred_description=less_default_pred_description(),
+		const string & pred_description=less_default_pred_description(),
 		Pred predicate_ =less_default, 
 		int norma_=2
 	);
@@ -70,7 +71,7 @@ PoliSearcher
 	(
 		const FwdIt bg_,
 		const FwdIt en_, 
-		const string &pred_description=less_default_pred_description(),
+		const string & pred_description=less_default_pred_description(),
 		Pred predicate_=less_default,
 		int norma_=2
 	);

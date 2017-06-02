@@ -14,7 +14,7 @@ This line of thought is not new. The combination of the principles of low-densit
  
 The PoliSearcher class, which  has been written as the result, is a combination of three containers:
 STL: std :: vector and two std :: list
-wich parameters contain the data in the form of iterators (!), so as not to invent a bike on the pointers.  Please do not kick roughly  due to of my implementation, because I'm not really an exelent encoder, but more of an inventor. I like to think about the concept. And when it is implemented, the implementation itself interests me much less. It's not laziness. Simply, to each his own. However, I will gladly accept any comments on the implementation.
+wich parameters contain the data in the form of iterators (!), so as not to invent a bike on the pointers.  Please do not kick roughly  due to of my implementation, because I'm not really an exelent coder, but more of an inventor. I like to think about the concept. And when it is implemented, the implementation itself interests me much less. It's not laziness. Simply, to each his own. However, I will gladly accept any comments on the implementation.
 So we have two lists:
 
 -list- named as "storage"  with a type as list <T> storage;

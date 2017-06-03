@@ -17,9 +17,9 @@ STL: std :: vector and two std :: list
 wich parameters contain the data in the form of iterators (!), so as not to invent a bike on the pointers.  Please do not kick roughly  due to of my implementation, because I'm not really an exelent coder, but more of an inventor. I like to think about the concept. And when it is implemented, the implementation itself interests me much less. It's not laziness. Simply, to each his own. However, I will gladly accept any comments on the implementation.
 So we have two lists:
 
--list- named as "storage"  with a type as "list <T> storage;"
+-list- named as "storage"  with a type as list< T > storage;
 
--list named as "search_list"  with a type as "list <list <t> :: const_iterator> search_list;"
+-list named as "search_list"  with a type as list < list < T > :: const_iterator > search_list;
 
 The storage list is created from the received data, added in the order of arrival, and as a result, it is an unordered sequence of objects of type T.
 
@@ -51,15 +51,15 @@ Brief class description:
 
 namespace PoliSearchering
 
-Class "PoliSearcher" - the structure of storage and search of elements of a given type, according to predicates comparison strictly more  or  less.
+Class PoliSearcher - the structure of storage and search of elements of a given type, according to predicates comparison strictly more  or  less.
 
 Constructors:
 
-template<typename T, size_t chain_size> class PoliSearcher {
+template < typename T, size_t chain_size > class PoliSearcher {
 
 PoliSearcher
 	(
-		list<T> & storage_, 
+		list< T > & storage_, 
 		const string & pred_description=less_default_pred_description(),
 		Pred predicate_ =less_default, 
 		int norma_=2
@@ -88,7 +88,7 @@ Storage_ - list of objects for constructing the search structure PoliSearcher;
 
 Pred_description is a string describing the comparison predicate. It is desirable that it contains information: about the field / fields by which the comparison is carried out and how the objects of PoliSearcher are compared.The format of this line is the developer's business. Defaults to the predicate_ predicate by default:
 predicate_ the pointer to the default comparison predicate. By default it corresponds to the call of the operator <on type T. When there is no a such an operator overloded, the parametr predicate_ should be passed explisetily 
-Parametr predicate_ is the pointer to the default comparison predicate. By default it corresponds to the call of the operator <on type T.
+Parametr predicate_ is the pointer to the default comparison predicate. By default it corresponds to the call of the operator < on type T.
 When such an operator does not overloaded, the parametr predicate_ must be explicitly passed.
 The type Pred is 
 typedef const bool (*Pred)(const &T, const &T);

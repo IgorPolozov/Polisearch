@@ -1,12 +1,9 @@
-//
 #ifndef PoliSearcher
 #include "PoliSearcher.h"
 #endif
-
-#ifndef cin
 #include<iostream>
-#endif
 #include<string>
+
 using namespace PoliSearchering;
 
 bool less_int(const int& a, const int& b){
@@ -26,10 +23,10 @@ int arsize=sizeof(arr_to_add)/sizeof(arr_to_add[0]);
 PoliSearcher<int, len> listed_lst (&arr_to_add[0], &arr_to_add[17], "less int", less_int);
 
 
-listed_lst.show(less_int ,"after first Listed creation with pred=less_int ");
+listed_lst.show(std::cout, less_int ,"after first Listed creation with pred=less_int ");
 std::cout<<std::endl;
 listed_lst.add_new_listed(more_int, "field int more");
-listed_lst.show(more_int,"after adding Listed with new pred= more_int ");
+listed_lst.show(std::cout, more_int,"after adding Listed with new pred= more_int ");
 std::cout<<std::endl;
 
 std::cout<<std::endl;
@@ -43,7 +40,7 @@ itoa(val_to_del, bf, 10);
 std::string val_to_del_str=bf;
 
 listed_lst.erase_it(val_to_del, less_int);
-listed_lst.show(less_int,"less after listed_lst.listed_list.erase(val= "+val_to_del_str+")");
+listed_lst.show(std::cout, less_int,"less after listed_lst.listed_list.erase(val= "+val_to_del_str+")");
 if(!(i%3))system("pause>0");
 }
 

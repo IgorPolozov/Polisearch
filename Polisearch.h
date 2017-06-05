@@ -1,14 +1,8 @@
-#include<iostream>
-#include <iterator>
 #include<list>
 #include<map>
 #include<vector>
-#include<string>
 #include<algorithm>
-#include <functional>
-#define nullptr 0
 
-//using namespace std;
 namespace PoliSearchering{
 template<typename T, size_t chain_size>
 class PoliSearcher
@@ -83,7 +77,7 @@ bool operator()(const Iter &rhs,  const T &lhs)
 		return (*predicate)(*rhs, lhs);
 	}
 
-bool operator()(const T &rhs,  const Iter  &lhs)//на cppreference ошибка или у майкрософт?
+bool operator()(const T &rhs,  const Iter  &lhs)//РЅР° cppreference РѕС€РёР±РєР° РёР»Рё Сѓ РјР°Р№РєСЂРѕСЃРѕС„С‚?
 	{
 		return (*predicate)(rhs, *lhs);
 	}	
@@ -135,7 +129,9 @@ IterToIter it_last=search_list.end();
            it_last=chain_leader_last->node_it;
     }
 
-IterToIter it=upper_bound(it_start, it_last, val, *this);
+IterToIter it=upper_bound(it_start, it_last, val, *this);//this it pointing to the next to the last val 
+
+--it; 
     return it;
     }
 
@@ -253,7 +249,7 @@ storage_begin=rhs.storage_begin;
         return *this;
         }
 
-bool compire_pred_eq(const T &rhs,  const T& lhs)// это == по < или >
+bool compire_pred_eq(const T &rhs,  const T& lhs)// СЌС‚Рѕ == РїРѕ < РёР»Рё >
 	{
 		return !predicate(rhs, lhs) && !predicate(lhs, rhs);
 	}
@@ -265,7 +261,7 @@ void decrease_halfing_search_vec()
 				size_t new_vec_size=bin_search_vec_size/2;
 					new_vec_size+=is_odd_old_size;
 						std::vector<NodePointer> new_vec(new_vec_size);
-							size_t j=0;//new_vec индекс
+							size_t j=0;//new_vec РёРЅРґРµРєСЃ
 for(size_t i=0; i < bin_search_vec_size ; i++)
 	{
 		if(!(i%2))
@@ -288,9 +284,9 @@ bin_search_vec=new_vec;
 
 void increase_doubling_search_vec(int norma=2)
 {
-if(having_a_free_cell())//функция корректно работает только если все цепи заполнены
-//то есть нет свободного места, поэтому тут от греха - проверка и выход если есть свободная
-//ячейка
+if(having_a_free_cell())//С„СѓРЅРєС†РёСЏ РєРѕСЂСЂРµРєС‚РЅРѕ СЂР°Р±РѕС‚Р°РµС‚ С‚РѕР»СЊРєРѕ РµСЃР»Рё РІСЃРµ С†РµРїРё Р·Р°РїРѕР»РЅРµРЅС‹
+//С‚Рѕ РµСЃС‚СЊ РЅРµС‚ СЃРІРѕР±РѕРґРЅРѕРіРѕ РјРµСЃС‚Р°, РїРѕСЌС‚РѕРјСѓ С‚СѓС‚ РѕС‚ РіСЂРµС…Р° - РїСЂРѕРІРµСЂРєР° Рё РІС‹С…РѕРґ РµСЃР»Рё РµСЃС‚СЊ СЃРІРѕР±РѕРґРЅР°СЏ
+//СЏС‡РµР№РєР°
 	{
 		std::cout<<"increase_doubling_search_vec() may not run with having_a_free_cell()==true"<<std::endl;
 			std::cin.get();
@@ -299,7 +295,7 @@ if(having_a_free_cell())//функция корректно работает только если все цепи заполн
 		size_t start_size=chain_size/norma;
 			size_t new_vec_size=bin_search_vec.size() * norma;
 				std::vector<NodePointer> new_vec(new_vec_size);
-					size_t j;//new_vec индекс
+					size_t j;//new_vec РёРЅРґРµРєСЃ
 for(size_t i=0; i<bin_search_vec.size(); ++i)
 	{
 		j=2*i;
@@ -529,8 +525,8 @@ void add(const Iter & it_storage)
 			}
 				if(having_a_free_cell() == false)
 					{
-						increase_doubling_search_vec();//удвоили размер вектора уменьшив вдвое размер цепочки
-							add(it_storage);//и вошли снова
+						increase_doubling_search_vec();//СѓРґРІРѕРёР»Рё СЂР°Р·РјРµСЂ РІРµРєС‚РѕСЂР° СѓРјРµРЅСЊС€РёРІ РІРґРІРѕРµ СЂР°Р·РјРµСЂ С†РµРїРѕС‡РєРё
+							add(it_storage);//Рё РІРѕС€Р»Рё СЃРЅРѕРІР°
 								return;
 					}
 IterToIter ins_iter_to_iter, ins_pos, end_pos;
@@ -643,7 +639,7 @@ if(chain_leader_it->len==1)
 							give_donors_cell_from_left(acceptor_it, chain_leader_it);
 						}
 			}
-	if(chain_leader_it->len==1 && chain_leader_it != bin_search_vec.begin())//можно поискать акцептора слева
+	if(chain_leader_it->len==1 && chain_leader_it != bin_search_vec.begin())//РјРѕР¶РЅРѕ РїРѕРёСЃРєР°С‚СЊ Р°РєС†РµРїС‚РѕСЂР° СЃР»РµРІР°
 		{
 			IterNodePointer acceptor_it=find_acceptor_chain_left(chain_leader_it);
 				if(acceptor_it != bin_search_vec.end())
@@ -728,54 +724,54 @@ chain_leader_current++
 					return searchListedStructure;
 	}
 
-void show_search_list(const std::string name=0)
+void show_search_list(std::ostream & os, const std::string name=0)
 	{
 		if(name.length()!=0)
 			{
-				std::cout<<name<<std::endl;
+				os<<name<<std::endl;
 			}
 				for(IterToIter it=search_list.begin(); it != search_list.end(); it++)
 					{
-						std::cout<<(*(*it))<<' ';
+						os<<(*(*it))<<' ';
 					}
-						std::cout<<std::endl;
+						os<<std::endl;
 	}
 
-void show_bin_search_vec(const std::string name=0)
+void show_bin_search_vec(std::ostream & os, const std::string name=0)
 	{
 	if(name.length()!=0)
 		{
-			std::cout<<name<<std::endl;
+			os<<name<<std::endl;
 		}
-   std::cout<<"bin_search_vec.size() = "<< bin_search_vec.size()<<std::endl;
-    std::cout<<std::endl;
+   os<<"bin_search_vec.size() = "<< bin_search_vec.size()<<std::endl;
+    os<<std::endl;
 			for(IterNodePointer it=bin_search_vec.begin(); it != bin_search_vec.end(); it++)
 				{
-                std::cout<<(*(*it->node_it))<<' '<<"the len of the chain is: "<<it->len<<std::endl;
+                os<<(*(*it->node_it))<<' '<<"the len of the chain is: "<<it->len<<std::endl;
 				}
-					std::cout<<std::endl;
+					os<<std::endl;
 	}
 
-void show_bin_search_vec(IterNodePointer b, IterNodePointer e, const std::string name=0)
+void show_bin_search_vec(std::ostream & os, IterNodePointer b, IterNodePointer e, const std::string name=0)
 	{
 		if(name.length()!=0)
 			{
-				std::cout<<name<<std::endl;
+				os<<name<<std::endl;
 			}
 				for(IterNodePointer it=b; it != e; it++)
 					{                    
-						std::cout<<(*(*it->node_it))<<' '<<it->len<<std::endl;
+						os<<(*(*it->node_it))<<' '<<it->len<<std::endl;
 					}
-						std::cout<<std::endl;
+						os<<std::endl;
 	}
 
 
-void show_chain(size_t ind, const std::string str="" )
+void show_chain(std::ostream & os, size_t ind, const std::string str="" )
 	{
-		std::cout<<str<<std::endl;
+		os<<str<<std::endl;
 			if(ind>bin_search_vec.size()-1)
 				{
-					std::cout<<"show_chain returns with out of index= "
+					os<<"show_chain returns with out of index= "
 						<<ind<<"when last is "
 						<<bin_search_vec.size()-1
 						<<std::endl;
@@ -787,26 +783,26 @@ void show_chain(size_t ind, const std::string str="" )
 						{
 							break;
 						}
-							std::cout<<**lid++<<' ';
+							os<<**lid++<<' ';
 				}
-					std::cout<<"\n__________________________\n";//отладочное))
+					os<<"\n__________________________\n";//РѕС‚Р»Р°РґРѕС‡РЅРѕРµ))
 	}
 
-void show_chains(const std::string str="")
+void show_chains(std::ostream & os, const std::string str="")
 	{
-		std::cout<<std::endl<<str<<std::endl;
-			std::cout<<"\n__________________________\n";
+		os<<std::endl<<str<<std::endl;
+			os<<"\n__________________________\n";
 				for(size_t i=0; i<bin_search_vec.size(); ++i)
 					{
-						std::cout<<"# "<<i<<" #";show_chain(i);
+						os<<"# "<<i<<" #";show_chain(os,i);
 					}
 	}	
 
-void show(const std::string str="")
+void show(std::ostream & os, const std::string str="")
 	{
-		show_search_list("show_search_list "+str);       
-			show_bin_search_vec("show_bin_search_vec "+str);           
-				show_chains("show_chains "+str);
+		show_search_list(os,"show_search_list "+str);       
+			show_bin_search_vec(os,"show_bin_search_vec "+str);           
+				show_chains(os,"show_chains "+str);
 	}
 	
 
@@ -834,7 +830,7 @@ void erase_it(const T & val,  ListListedsIter listed_list_it)
                         for(;listed_list_it != list_Listeds.end(); listed_list_it++)
 					        listed_list_it->second.erase(storage_it_to_delete);
                 }
-            storage.erase(storage_it_to_delete);//удаление из хранилища           
+            storage.erase(storage_it_to_delete);//СѓРґР°Р»РµРЅРёРµ РёР· С…СЂР°РЅРёР»РёС‰Р°           
 	}
 
 IterToIter find_search_list_iter_start(Pred predicate_, const T & val ){
@@ -889,7 +885,7 @@ IterToIter find_search_list_iter_first_by_copl_pred_equal(Pred predicate_, const
                 IterToIter fnd_it_last = find_listed->second.find_search_list_iter_last(val);
 
 bool is_eq_by_curent_pred=false;
-if(fnd_it_start != find_listed->second.search_list.end() /*|| fnd_it_last == fnd_it*/){//не нашла в границах
+if(fnd_it_start != find_listed->second.search_list.end() /*|| fnd_it_last == fnd_it*/){//РЅРµ РЅР°С€Р»Р° РІ РіСЂР°РЅРёС†Р°С…
     for( ; fnd_it_start!=fnd_it_last; ++fnd_it_start ){
 
 //the cycle of checking the value from the interval using the some known (presents in vpred) predicates:
@@ -1156,24 +1152,24 @@ void erase_it(const T & val,  Pred predicate_ ){
     }
 
 
-void show( Pred predicate_=less_default, std::string str="" ){
+void show(std::ostream& os, Pred predicate_=less_default, std::string str="" ){
     ListListedsIter listed_list_it =  list_Listeds.find(predicate_); 
     if(listed_list_it != list_Listeds.end()){
-        std::cout<<"pred_description= "<<listed_list_it->second.pred_description<<std::endl;
+        os<<"pred_description= "<<listed_list_it->second.pred_description<<std::endl;
         if(predicate_==less_default)str=PoliSearcher::less_default_pred_description();
-            listed_list_it->second.show(str);
+            listed_list_it->second.show(os, str);
         }
-else{std::cout<<"listed_list not found in void show(ListListedsIter listed_list_it, string str=\"\")";}
+else{os<<"listed_list not found in void show(ListListedsIter listed_list_it, string str=\"\")";}
     }
 
-void show_search_list(Pred predicate_=less_default, std::string str="" ){
+void show_search_list(std::ostream& os, Pred predicate_=less_default, std::string str="" ){
 ListListedsIter listed_list_it =  list_Listeds.find(predicate_); 
     if(listed_list_it != list_Listeds.end()){
-        std::cout<<"pred_description= "<<listed_list_it->second.pred_description<<std::endl;
+        os<<"pred_description= "<<listed_list_it->second.pred_description<<std::endl;
         if(predicate_==less_default)str=PoliSearcher::less_default_pred_description();
-            listed_list_it->second.show_search_list("The search_list is sorted by "+str); 
+            listed_list_it->second.show_search_list(os, "The search_list is sorted by "+str); 
         }
-else{std::cout<<"listed_list not found in void show(ListListedsIter listed_list_it, string str=\"\")";}
+else{os<<"listed_list not found in void show(ListListedsIter listed_list_it, string str=\"\")";}
     }
 
 private:

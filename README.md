@@ -154,7 +154,8 @@ Equality is determined in accordance with:
 (!predicate(elem, val) && !predicate(val, elem)) == (val == elem)
 
 template< Pred predicate > 
-Iterator< predicate > find_search_list_iter_last(const T & val ); - a method that returns an iterator to the first element that is behind the last element that is equal to the element val in accordance with the predicate "predicate"
+Iterator< predicate > find_search_list_iter_last(const T & val ); - - a method that returns an iterator to the last element that is equal to the element val in accordance with the predicate predicate. If no val is found, indicates the end of the structure.
+To iterate over the range, you might need to get the next one (++). Previously, you need to check for the validity of the resulting iterator, since after the increase it can already look at the end (not be valid).
 
 2.1 Note: The pair of listed methods that are called with the values val1 and val2 return the iterators of range val1 and val2 (inclusive). The values val1 and val2 must follow one another in accordance with the predicate "predicate". It is logical that if both methods are called with the same value val, then iterators will be obtained for a range containing all elements equal to each other  (val) by the predicate "predicate" 
 

@@ -1,4 +1,4 @@
-# Polisearch
+# Polisearcher
 The container for the storing and searching data
 
 Finally, I was going to put in order the result of one of my experiments on the topic of search structures and expanding arrays.

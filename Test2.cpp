@@ -1,10 +1,8 @@
 #ifndef PoliSearcher
 #include "PoliSearcher.h"
 #endif
-
-#ifndef cin
 #include<iostream>
-#endif
+#include<string>
 
 using namespace PoliSearchering;
 
@@ -110,7 +108,7 @@ return lhs.mark_chemistry>rhs.mark_chemistry;
     }
 
 //predicate stage definition for
-//the comparison of lhs и rhs by the all predicates in array array_pred
+//the comparison of lhs Рё rhs by the all predicates in array array_pred
 
 typedef bool(*Pred) (const DataToStore &, const DataToStore &);
 
@@ -125,10 +123,10 @@ int i=0;
 bool is_pred;
     for(; i<N; ++i){
 is_pred = array_pred[i](lhs, rhs);
-        if( !is_pred && !array_pred[i](rhs, lhs) )continue;//равенство
-            else return is_pred; //неравенство          
+        if( !is_pred && !array_pred[i](rhs, lhs) )continue;//СЂР°РІРµРЅСЃС‚РІРѕ
+            else return is_pred; //РЅРµСЂР°РІРµРЅСЃС‚РІРѕ          
         }
-return false;//все равны
+return false;//РІСЃРµ СЂР°РІРЅС‹
     }
 
 std::string  pred_stagede_scription(std::vector<std::string> &vds){
@@ -162,34 +160,34 @@ schoolers(
           more_by_name
           );
 
-schoolers.show_search_list(more_by_name,"the field number 1 ");
+schoolers.show_search_list(std::cout, more_by_name,"the field number 1 ");
 std::cout<<std::endl;
 
 //adding Listed sorted by growth (predicate <) of the names value
 schoolers.add_new_listed(less_by_name,"less_by_name");
 std::cout<<"here!"<<std::endl;
-schoolers.show( less_by_name,"show - less_by_name " );
+schoolers.show(std::cout,  less_by_name,"show - less_by_name " );
 
 
-schoolers.show_search_list(less_by_name,"less_by_name");
+schoolers.show_search_list(std::cout, less_by_name,"less_by_name");
 std::cout<<std::endl;
 
 //adding Listed sorted by growth (predicate <) of the heighs value
 schoolers.add_new_listed(less_by_height,"less_by_height");
-schoolers.show_search_list(less_by_height,"less_by_height");
+schoolers.show_search_list(std::cout, less_by_height,"less_by_height");
 std::cout<<std::endl;
 
 //adding an element (it should be added into storage first and then it wil be
 //added to all the Listeds present
 DataToStore bonifatiy("Bonifatiy", 2017, 2017, 2, 5, 3);
 schoolers.add(bonifatiy);
-schoolers.show_search_list(less_by_name,"less_by_name");
-schoolers.show_search_list(less_by_height,"less_by_height");
+schoolers.show_search_list(std::cout, less_by_name,"less_by_name");
+schoolers.show_search_list(std::cout, less_by_height,"less_by_height");
 
 //removing an element 
 schoolers.erase_it(bonifatiy,less_by_name);
-schoolers.show_search_list(less_by_name,"less_by_name");
-schoolers.show_search_list(less_by_height,"less_by_height");
+schoolers.show_search_list(std::cout, less_by_name,"less_by_name");
+schoolers.show_search_list(std::cout, less_by_height,"less_by_height");
 
 std::list<DataToStore> lds;
 
@@ -202,7 +200,7 @@ for(int i=0; i<5; ++i){
 std::cout<<"first ctor"<<std::endl;
 //the first constructor demo:
 PoliSearcher<DataToStore, len> psfctor(lds, "psfctor with pred = less_by_name", less_by_name, 4);
-psfctor.show_search_list (less_by_name);
+psfctor.show_search_list (std::cout, less_by_name);
 //demo of iteration over the List<predicate> by the Iterator<predicate> objects
 PoliSearcher<DataToStore, len>::Iterator<less_by_name> begin_it_less_by_name=schoolers.begin<less_by_name>();
 PoliSearcher<DataToStore, len>::Iterator<less_by_name> end_it_less_by_name=schoolers.end<less_by_name>();
@@ -222,8 +220,8 @@ if(it_by_ind.is_valid())std::cout<<**beg_it[i]<<std::endl;
 else std::cout<<"Problem with Iterator["<<i<<"]"<<std::endl;
     }
 
-schoolers.show_search_list(less_by_name,"less_by_name");
-schoolers.show_search_list(less_by_height,"less_by_height");
+schoolers.show_search_list(std::cout, less_by_name,"less_by_name");
+schoolers.show_search_list(std::cout, less_by_height,"less_by_height");
 
 PoliSearcher<DataToStore, len>::Iterator<less_by_name> find_first_it =
 schoolers.find_search_list_iter_start<less_by_name>(DataToStore ("Masha", 0, 0, 0,0,0));
@@ -235,11 +233,15 @@ std::cout<<"\nnot found_first_it " << std::endl;
 
 PoliSearcher<DataToStore, len>::Iterator<less_by_name> find_last_it =
 schoolers.find_search_list_iter_last<less_by_name>(DataToStore ("Masha", 0, 0,0,0,0));
-if(find_first_it.is_valid()){
-std::cout<<"\nfind_last_it " << **find_last_it << std::endl;
+
+if( find_first_it.is_valid() && find_last_it.is_valid() ){
+
+std::cout<<"\nfind_first_it and find_last_it " << **find_last_it << std::endl;
     }else{
-std::cout<<"\nnot found_last_it " << std::endl;
+std::cout<<"\nfind_first_it and/or not found_last_it " << std::endl;
     }
+
+
 PoliSearcher<DataToStore, len>::Iterator<less_by_name> diap_it =find_first_it;
 std::cout<<"\nAll Mashas found:\n";
 // pair of these numbers using the case of iteration over all the mages in one of the Listed (less_by_name more precisely)
@@ -248,6 +250,7 @@ std::cout<<"\nAll Mashas found:\n";
 // all available predicates
 int masha_num=0, masha_tobe_found_by_all_predicates=2;
 PoliSearcher<DataToStore, len>::Iterator<less_by_name> for_by_all_pred_test_it ;
+find_last_it++;//point to next of last object found 
 for( ;diap_it!=find_last_it; ++diap_it){
 std::cout<<**diap_it<<std::endl;
 if(++masha_num == masha_tobe_found_by_all_predicates)  for_by_all_pred_test_it= diap_it;
@@ -293,14 +296,10 @@ std::cout<<"\nnot found by_tree_pred_test_it " << std::endl;
     }
 std::cout<<std::endl;
 
-
 schoolers.add_new_listed(&pred_stage_all<DataToStore, array_preds_size, array_preds>,"less_by_all");
-schoolers.show_search_list(&pred_stage_all<DataToStore, array_preds_size, array_preds>,"less_by_all");
+schoolers.show_search_list(std::cout, &pred_stage_all<DataToStore, array_preds_size, array_preds>,"less_by_all");
 std::cout<<std::endl;
-
 
 std::system("pause");
 return 0;
-
     }
-

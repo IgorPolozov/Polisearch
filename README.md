@@ -77,7 +77,7 @@ PoliSearcher
 	);
 
 
-template<typename FwdIt>
+template< typename FwdIt >
 PoliSearcher
 	(
 		const FwdIt bg_,

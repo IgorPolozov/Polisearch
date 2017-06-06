@@ -110,7 +110,7 @@ Bg_, en_, - forward (successive) iterators of the container or array specifying 
 
 members:
 
-//////////////////////////// Iterator
+////////////////////////////begin Iterator
 Nested class "Iterator":
 
 template<Pred predicate> 
@@ -128,17 +128,28 @@ members:
 bool is_valid(); - verification of the validity of the received iterator
 
 int size (); - the size of the ordered structure by the given predicate (the sizes of all structures coincide with the size of the storage)
+
 operators:
+
 Note: All access to type T is provided as read only
+
 Iterator operator[](int ind); - access by index (not recommended)
+
 Iterator & operator++();
+
 Iterator operator++(int);
+
 Iterator & operator--();
+
 Iterator operator--(int);
+
 Iterator & operator=(const Iterator rhs);
+
 bool operator == (const Iterator rhs);
+
 bool operator != (const Iterator rhs);
-////////////////////////////////Iterator
+
+////////////////////////////////end Iterator
 
 template
 < Pred pred > 

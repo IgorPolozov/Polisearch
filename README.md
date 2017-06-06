@@ -177,6 +177,6 @@ void add(const T & val);- a method that adds an element to PoliSearcher (that is
 
 void erase_it(const T & val,  Pred predicate_ ); - a method that removes an element from PoliSearcher (that is, in all its ordered structures)
 
-void show(Pred predicate_=less_default, std::string str=""); - demonstration and debugging method. Displays structure of the so called Class "Listed" created by the predicate "predicate". The output is search_list, bin_search_vec, and together. String str - header, is outputting at the request of the developer.
+void show(Pred predicate_=less_default, const std::string & str=""); - demonstration and debugging method. Displays structure of the so called Class "Listed" created by the predicate "predicate". The output is search_list, bin_search_vec, and together. String str - header, is outputting at the request of the developer.
 
-void show_search_list(Pred predicate_=less_default, std::string str="" ); - a method of outputting the search structure by its predicate.
+void show_search_list(Pred predicate_=less_default, const & std::string str="" ); - a method of outputting the search structure by its predicate.

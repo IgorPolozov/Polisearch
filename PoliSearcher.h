@@ -77,7 +77,7 @@ bool operator()(const Iter &rhs,  const T &lhs)
 		return (*predicate)(*rhs, lhs);
 	}
 
-bool operator()(const T &rhs,  const Iter  &lhs)//на cppreference ошибка или у майкрософт?
+bool operator()(const T &rhs,  const Iter  &lhs)//Г­Г  cppreference Г®ГёГЁГЎГЄГ  ГЁГ«ГЁ Гі Г¬Г Г©ГЄГ°Г®Г±Г®ГґГІ?
 	{
 		return (*predicate)(rhs, *lhs);
 	}	
@@ -202,9 +202,9 @@ Pred predicate;
 
 void init(const std::list<T> &storage_, Pred predicate_, int norma_=2){
 storage_begin=storage_.begin();
-storage_end=storage_.end();
-predicate=predicate_;
-norma=norma_;
+	storage_end=storage_.end();
+		predicate=predicate_;
+			norma=norma_;
 if(storage_begin != storage_end)
 			{
 				Iter it=storage_begin;
@@ -216,8 +216,8 @@ if(storage_begin != storage_end)
 
     }
 void init(const std::list<T> &storage_, const std::string& pred_description_, Pred predicate_, int norma_=2){
-pred_description=pred_description_;
-init(storage_, predicate_, norma_);    
+	pred_description=pred_description_;
+		init(storage_, predicate_, norma_);    
     }
 
 //the element deletion from the search_list and bin_search_vec
@@ -249,7 +249,7 @@ storage_begin=rhs.storage_begin;
         return *this;
         }
 
-bool compire_pred_eq(const T &rhs,  const T& lhs)// это == по < или >
+bool compire_pred_eq(const T &rhs,  const T& lhs)// ГЅГІГ® == ГЇГ® < ГЁГ«ГЁ >
 	{
 		return !predicate(rhs, lhs) && !predicate(lhs, rhs);
 	}
@@ -261,7 +261,7 @@ void decrease_halfing_search_vec()
 				size_t new_vec_size=bin_search_vec_size/2;
 					new_vec_size+=is_odd_old_size;
 						std::vector<NodePointer> new_vec(new_vec_size);
-							size_t j=0;//new_vec индекс
+							size_t j=0;//new_vec ГЁГ­Г¤ГҐГЄГ±
 for(size_t i=0; i < bin_search_vec_size ; i++)
 	{
 		if(!(i%2))
@@ -284,9 +284,9 @@ bin_search_vec=new_vec;
 
 void increase_doubling_search_vec(int norma=2)
 {
-if(having_a_free_cell())//функция корректно работает только если все цепи заполнены
-//то есть нет свободного места, поэтому тут от греха - проверка и выход если есть свободная
-//ячейка
+if(having_a_free_cell())//ГґГіГ­ГЄГ¶ГЁГї ГЄГ®Г°Г°ГҐГЄГІГ­Г® Г°Г ГЎГ®ГІГ ГҐГІ ГІГ®Г«ГјГЄГ® ГҐГ±Г«ГЁ ГўГ±ГҐ Г¶ГҐГЇГЁ Г§Г ГЇГ®Г«Г­ГҐГ­Г»
+//ГІГ® ГҐГ±ГІГј Г­ГҐГІ Г±ГўГ®ГЎГ®Г¤Г­Г®ГЈГ® Г¬ГҐГ±ГІГ , ГЇГ®ГЅГІГ®Г¬Гі ГІГіГІ Г®ГІ ГЈГ°ГҐГµГ  - ГЇГ°Г®ГўГҐГ°ГЄГ  ГЁ ГўГ»ГµГ®Г¤ ГҐГ±Г«ГЁ ГҐГ±ГІГј Г±ГўГ®ГЎГ®Г¤Г­Г Гї
+//ГїГ·ГҐГ©ГЄГ 
 	{
 		std::cout<<"increase_doubling_search_vec() may not run with having_a_free_cell()==true"<<std::endl;
 			std::cin.get();
@@ -295,7 +295,7 @@ if(having_a_free_cell())//функция корректно работает только если все цепи заполн
 		size_t start_size=chain_size/norma;
 			size_t new_vec_size=bin_search_vec.size() * norma;
 				std::vector<NodePointer> new_vec(new_vec_size);
-					size_t j;//new_vec индекс
+					size_t j;//new_vec ГЁГ­Г¤ГҐГЄГ±
 for(size_t i=0; i<bin_search_vec.size(); ++i)
 	{
 		j=2*i;
@@ -525,8 +525,8 @@ void add(const Iter & it_storage)
 			}
 				if(having_a_free_cell() == false)
 					{
-						increase_doubling_search_vec();//удвоили размер вектора уменьшив вдвое размер цепочки
-							add(it_storage);//и вошли снова
+						increase_doubling_search_vec();//ГіГ¤ГўГ®ГЁГ«ГЁ Г°Г Г§Г¬ГҐГ° ГўГҐГЄГІГ®Г°Г  ГіГ¬ГҐГ­ГјГёГЁГў ГўГ¤ГўГ®ГҐ Г°Г Г§Г¬ГҐГ° Г¶ГҐГЇГ®Г·ГЄГЁ
+							add(it_storage);//ГЁ ГўГ®ГёГ«ГЁ Г±Г­Г®ГўГ 
 								return;
 					}
 IterToIter ins_iter_to_iter, ins_pos, end_pos;
@@ -639,7 +639,7 @@ if(chain_leader_it->len==1)
 							give_donors_cell_from_left(acceptor_it, chain_leader_it);
 						}
 			}
-	if(chain_leader_it->len==1 && chain_leader_it != bin_search_vec.begin())//можно поискать акцептора слева
+	if(chain_leader_it->len==1 && chain_leader_it != bin_search_vec.begin())//Г¬Г®Г¦Г­Г® ГЇГ®ГЁГ±ГЄГ ГІГј Г ГЄГ¶ГҐГЇГІГ®Г°Г  Г±Г«ГҐГўГ 
 		{
 			IterNodePointer acceptor_it=find_acceptor_chain_left(chain_leader_it);
 				if(acceptor_it != bin_search_vec.end())
@@ -785,7 +785,7 @@ void show_chain(std::ostream & os, size_t ind, const std::string &str="" )
 						}
 							os<<**lid++<<' ';
 				}
-					os<<"\n__________________________\n";//отладочное))
+					os<<"\n__________________________\n";//Г®ГІГ«Г Г¤Г®Г·Г­Г®ГҐ))
 	}
 
 void show_chains(std::ostream & os, const std::string &str="")
@@ -812,9 +812,9 @@ void show(std::ostream & os, const std::string &str="")
 //find predicate by the its description (not used yet) 
 Pred select_pred_by_description(std::string description){
     if(!list_Listeds.empty()){
-ListListedsIter listed_list_it=list_Listeds.begin(), listed_list_end=list_Listeds.end();
-for(; listed_list_it!=listed_list_end; ++listed_list_it){ 
-if(listed_list_it->pred_description == description) return listed_list_it->predicate;    
+	ListListedsIter listed_list_it=list_Listeds.begin(), listed_list_end=list_Listeds.end();
+		for(; listed_list_it!=listed_list_end; ++listed_list_it){ 
+			if(listed_list_it->pred_description == description) return listed_list_it->predicate;    
     }
         }
 return nullptr;
@@ -830,7 +830,7 @@ void erase_it(const T & val,  ListListedsIter listed_list_it)
                         for(;listed_list_it != list_Listeds.end(); listed_list_it++)
 					        listed_list_it->second.erase(storage_it_to_delete);
                 }
-            storage.erase(storage_it_to_delete);//удаление из хранилища           
+            storage.erase(storage_it_to_delete);//ГіГ¤Г Г«ГҐГ­ГЁГҐ ГЁГ§ ГµГ°Г Г­ГЁГ«ГЁГ№Г            
 	}
 
 IterToIter find_search_list_iter_start(Pred predicate_, const T & val ){
@@ -885,7 +885,7 @@ IterToIter find_search_list_iter_first_by_copl_pred_equal(Pred predicate_, const
                 IterToIter fnd_it_last = find_listed->second.find_search_list_iter_last(val);
 
 bool is_eq_by_curent_pred=false;
-if(fnd_it_start != find_listed->second.search_list.end() /*|| fnd_it_last == fnd_it*/){//не нашла в границах
+if(fnd_it_start != find_listed->second.search_list.end() /*|| fnd_it_last == fnd_it*/){//Г­ГҐ Г­Г ГёГ«Г  Гў ГЈГ°Г Г­ГЁГ¶Г Гµ
     for( ; fnd_it_start!=fnd_it_last; ++fnd_it_start ){
 
 //the cycle of checking the value from the interval using the some known (presents in vpred) predicates:
@@ -933,7 +933,7 @@ PoliSearcher(std::list<T> & storage_, const std::string &pred_description=less_d
 :storage(storage_)	
 {
 list_Listeds.insert(std::make_pair<Pred, Listed>(predicate_, Listed()));
-list_Listeds.begin()->second.init(storage, pred_description, predicate_, norma_);
+	list_Listeds.begin()->second.init(storage, pred_description, predicate_, norma_);
 	}
 
 template<typename FwdIt>
@@ -941,7 +941,7 @@ PoliSearcher(const FwdIt bg_, const FwdIt en_, const std::string &pred_descripti
 :storage(bg_, en_)
 {
 list_Listeds.insert(std::make_pair<Pred, Listed>(predicate_, Listed()));
-list_Listeds.begin()->second.init(storage, pred_description, predicate_, norma_);
+	list_Listeds.begin()->second.init(storage, pred_description, predicate_, norma_);
 	}
 
 

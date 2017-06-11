@@ -35,9 +35,9 @@ It needs to be understood that the iterator of the list search_list is an iterat
 
 1.4.1 Vector bin_search_vec is quite interesting (I hope) container. Its elements contain iterators duplicating the elements search_list but with some step not exceeding chain_size. In the demo the chain_size = 4. This is a small step value, but this has been done for simplicity of demonstration. It is clear, that when all chains contain the maximum len = chain_size = 4, the number of elements in the vector is four times less than in the search_list list. It is also logical, that the sequence of vector elements is ordered, since the sequence of elements of the list of search_list is ordered. When searching for elements, we use binary search for a vector (std :: upper_bound, std :: lower_bound), for a time about log2 (N / chain_size) where N is the total number of list items.
 
-1.4.2 After finding the desired vector element (indicating the leader of the corresponding list chain), it is necessary to check the chain for readiness to accept a new element (l < chain_size) and if it is full, then it needs additionaly maximum N / (chain_size) or on average (N / (chain_size)) / 2 steps to find the free chain leader. After that, it remains to go through the found chain sequentially to the insertion point, which deeds in the worst case will give chain_size-1 steps. And on average, the overall complexity:
+1.4.2 After finding the desired vector element (indicating the leader of the corresponding list chain), it is necessary to check the chain for readiness to accept a new element (l < chain_size) and if it is full, then it needs additionaly maximum N / (chain_size) or on average (N / (chain_size)) / 2 steps to find the free chain leader. Next, you need to rearrange all the iterators of the chain leaders between the targeting chain and the found free chain, which will require additional  N / (2 * chain_size) steps. After that, it remains to go through the found chain sequentially to the insertion point, which deeds in the worst case will give chain_size-1 steps. And on average, the overall complexity:
 
-log2 (N / (2 * chain_size)) + N / (2 * chain_size) + (chain_size-1) / 2
+log2 (N / (2 * chain_size)) + N / chain_size + (chain_size-1) / 2
 
 which is much less than N / 2 - the average complexity of sequential find in the storage list.
 

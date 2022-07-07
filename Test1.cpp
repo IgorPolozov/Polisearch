@@ -1,12 +1,7 @@
 #ifndef PoliSearcher
 #include "PoliSearcher.h"
 #endif
-#include<iostream>
 #include<string>
-
-
-#include <stdio.h>
-#include <stdlib.h>
 
 using namespace std;
 
@@ -41,9 +36,8 @@ std::cout<<"\n\n----deletion all one by one-----\n\n";
 for(int i=0; i<arsize; ++i)
 	{
 int val_to_del=arr_to_add[i];
-char bf[40];
-_itoa_s(val_to_del, bf, 10);
-std::string val_to_del_str=bf;
+
+std::string val_to_del_str=std::to_string(val_to_del);
 
 listed_lst.erase_it(val_to_del, less_int);
 listed_lst.show(std::cout, less_int,"less after listed_lst.listed_list.erase(val= "+val_to_del_str+")");

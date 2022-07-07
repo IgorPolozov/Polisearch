@@ -2,6 +2,7 @@
 #include<map>
 #include<vector>
 #include<algorithm>
+#include<iostream>
 
 namespace PoliSearchering{
 template<typename T, size_t chain_size>
@@ -232,7 +233,7 @@ void erase(const T & val)
             if(storage_it_to_delete !=storage_end){
 					erase(storage_it_to_delete);
                 }else{
-cout<< "storage_it_to_delete ==storage_end at void erase(const T & val)" << endl;
+std::cout<< "storage_it_to_delete ==storage_end at void erase(const T & val)" << std::endl;
                 }
 						//return storage_it_to_delete;
 	}
@@ -893,7 +894,7 @@ if(fnd_it_start != find_listed->second.search_list.end() /*|| fnd_it_last == fnd
 ListListedsIter it= list_Listeds.begin();
     is_eq_by_curent_pred=true;
     for( ; it!=list_Listeds.end(); ++it ){
-std::vector<Pred>::const_iterator &vit=find(vpred.begin(), vpred.end(), it->second.predicate);
+typename std::vector<Pred>::const_iterator &vit=find(vpred.begin(), vpred.end(), it->second.predicate);
 if(vit == vpred.end() || find_listed==it ) continue;
             if(it->second.compire_pred_eq(val, **fnd_it_start) == false){
                 is_eq_by_curent_pred=false;
@@ -924,7 +925,7 @@ static const std::string less_default_pred_description(){
     }
 
 void show(ListListedsIter listed_list_it, std::string str=""){
-        listed_list_it->second.show(str;)
+	listed_list_it->second.show(str);
         }
 
 public:	
@@ -940,7 +941,7 @@ template<typename FwdIt>
 PoliSearcher(const FwdIt bg_, const FwdIt en_, const std::string &pred_description=less_default_pred_description(), Pred predicate_=less_default, int norma_=2)
 :storage(bg_, en_)
 {
-list_Listeds.insert(std::make_pair<Pred, Listed>(predicate_, Listed()));
+list_Listeds.insert(std::pair<Pred, Listed>(predicate_, Listed()));
 	list_Listeds.begin()->second.init(storage, pred_description, predicate_, norma_);
 	}
 
@@ -1127,7 +1128,7 @@ if(!list_Listeds.empty())norma = list_Listeds.begin()->second.norma;
 }
 //doing opposite to add_new_listed
 void remove_listed(Pred predicate){
-    ListListedsIter find_listed=list_Listeds.find(predicate_);
+    ListListedsIter find_listed=list_Listeds.find(predicate);
         if(find_listed != list_Listeds.end()){
             list_Listeds.erase(find_listed);
     }
@@ -1230,7 +1231,7 @@ int siz=0
 							std::cout<<std::endl;
 							if(siz)
 								{
-									std::cout<<"Size of interval = "<<cnt<<endl;
+									std::cout<<"Size of interval = "<<cnt<<std::endl;
 								}
 	}
 }// end of namespace PoliSearchering

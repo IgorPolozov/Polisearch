@@ -4,6 +4,12 @@
 #include<iostream>
 #include<string>
 
+
+#include <stdio.h>
+#include <stdlib.h>
+
+using namespace std;
+
 using namespace PoliSearchering;
 
 bool less_int(const int& a, const int& b){
@@ -36,7 +42,7 @@ for(int i=0; i<arsize; ++i)
 	{
 int val_to_del=arr_to_add[i];
 char bf[40];
-itoa(val_to_del, bf, 10);
+_itoa_s(val_to_del, bf, 10);
 std::string val_to_del_str=bf;
 
 listed_lst.erase_it(val_to_del, less_int);
